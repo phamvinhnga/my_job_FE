@@ -46,3 +46,4 @@ Thumbs.db
 obj/
 bin/
 .git
+package-lock.json
