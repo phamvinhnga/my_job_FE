@@ -1,0 +1,86 @@
+#site-logo.logo-border {
+    border-color: #bf9369;
+}
+
+.header-aside-search.js-search .searchform i.fa-search {
+    color: #bf9369;
+}
+
+#site-title {
+    font-family: "Fira Sans", sans-serif;
+    text-transform: none;
+}
+
+.site-logo-with-icon #site-title i {
+    font-size: 50px;
+}
+
+.site-logo-mixed-image img {
+    max-width: 100px;
+}
+
+.site-title-line em {
+    color: #bf9369;
+}
+
+.site-title-line mark {
+    background: #bf9369;
+    color: #ffffff;
+}
+
+.site-title-heading-font {
+    font-family: "Fira Sans", sans-serif;
+}
+
+.header-aside,
+div.menu-side-box,
+.menu-items {
+    border-color: #a17c59;
+}
+
+@media only screen and (max-width: 969px) {
+    
+    .mobilemenu-fixed .menu-toggle,
+    .mobilemenu-fixed .menu-items {
+        background: #bf9369;
+    }
+
+    .sidebar {
+        margin-top: 45px;
+    }
+
+    .frontpage-widgetarea>div.hgrid>[class*="hgrid-span-"] {
+        margin-bottom: 45px;
+    }
+}
+
+
+.menu-items ul {
+    background: #bf9369;
+    border-color: #a17c59;
+}
+
+#header .menu-items>li.current-menu-item:not(.nohighlight)>a,
+#header .menu-items>li.current-menu-ancestor>a,
+#header .menu-items>li:hover>a,
+#header .menu-items>li.menu-item>a:hover,
+#header .menu-items ul li.current-menu-item:not(.nohighlight)>a,
+#header .menu-items ul li.current-menu-ancestor>a,
+#header .menu-items ul li:hover>a,
+#header .menu-items ul li.menu-item>a:hover {
+    color: #ffffff;
+}
+
+.menu-items ul {
+    background: #bf9369;
+    border-color: #a17c59;
+}
+
+.menu-items>li.current-menu-item:not(.nohighlight),
+.menu-items>li.current-menu-ancestor,
+.menu-items>li:hover,
+.menu-items ul li.current-menu-item:not(.nohighlight),
+.menu-items ul li.current-menu-ancestor,
+.menu-items ul li:hover {
+    background: #bf9369;
+}
