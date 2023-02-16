@@ -4,13 +4,13 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
-    path: 'abc',
+    path: 'cms',
     component: AppComponent,
     loadChildren: () =>
       import('./module/cms/cms.module').then((m) => m.CmsModule),
   },
   {
-    path: 'xxx',
+    path: '',
     component: AppComponent,
     loadChildren: () =>
       import('./module/web/web.module').then((m) => m.WebModule),

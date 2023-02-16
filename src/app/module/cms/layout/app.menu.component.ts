@@ -15,116 +15,47 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'Home',
+                label: 'Quản lý website',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
+                    { label: 'Header', icon: 'pi pi-fw pi-home', routerLink: ['/cms/menu'] },
+                    { label: 'Slider', icon: 'pi pi-fw pi-home', routerLink: ['/cms/slider'] },
+                    { label: 'Về chúng tôi', icon: 'pi pi-fw pi-home', routerLink: ['/cms/ve-chung-toi'] },
+                    { label: 'Thực đơn', icon: 'pi pi-fw pi-home', routerLink: ['/ms/thuc-don'] },
+                    { label: 'Footer', icon: 'pi pi-fw pi-home', routerLink: ['/cms/footer'] },
                 ]
             },
             {
-                label: 'Prime Blocks',
+                label: 'Quản lý bài viết',
                 items: [
-                    { label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/xxx'], badge: 'NEW' },
-                    { label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank' },
+                    { label: 'Bài viết', icon: 'pi pi-fw pi-home', routerLink: ['/cms/post'] },
                 ]
             },
             {
-                label: 'Utilities',
+                label: 'Quản lý sản phẩm',
                 items: [
-                    { label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/utilities/icons'] },
-                    { label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: ['https://www.primefaces.org/primeflex/'], target: '_blank' },
+                    { label: 'Danh mục sản phẩm', icon: 'pi pi-fw pi-home', routerLink: ['/cms/post'] },
+                    { label: 'Sản phẩm', icon: 'pi pi-fw pi-home', routerLink: ['/cms/post'] },
                 ]
             },
             {
-                label: 'Pages',
+                label: 'Quản lý chuỗi cửa hàng',
+                items: [
+                    { label: 'Địa điêm', icon: 'pi pi-fw pi-home', routerLink: ['/cms/post'] },
+                    { label: 'Cửa hàng', icon: 'pi pi-fw pi-home', routerLink: ['/cms/post'] },
+                ]
+            },
+            {
+                label: 'Quản lý tài khoản',
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
                     {
-                        label: 'Landing',
+                        label: 'Danh sách tài khoản',
                         icon: 'pi pi-fw pi-globe',
                         routerLink: ['/landing']
                     },
                     {
-                        label: 'Auth',
+                        label: 'Thông tin tài khoản cá nhân',
                         icon: 'pi pi-fw pi-user',
-                        items: [
-                            {
-                                label: 'Login',
-                                icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/auth/login']
-                            },
-                            {
-                                label: 'Error',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error']
-                            },
-                            {
-                                label: 'Access Denied',
-                                icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/auth/access']
-                            }
-                        ]
-                    },
-                    {
-                        label: 'Crud',
-                        icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/pages/crud']
-                    },
-                    {
-                        label: 'Timeline',
-                        icon: 'pi pi-fw pi-calendar',
-                        routerLink: ['/pages/timeline']
-                    },
-                    {
-                        label: 'Not Found',
-                        icon: 'pi pi-fw pi-exclamation-circle',
-                        routerLink: ['/notfound']
-                    },
-                    {
-                        label: 'Empty',
-                        icon: 'pi pi-fw pi-circle-off',
-                        routerLink: ['/pages/empty']
-                    },
-                ]
-            },
-            {
-                label: 'Hierarchy',
-                items: [
-                    {
-                        label: 'Submenu 1', icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            {
-                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' },
-                                    { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark' },
-                                    { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' },
-                                ]
-                            },
-                            {
-                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark' }
-                                ]
-                            },
-                        ]
-                    },
-                    {
-                        label: 'Submenu 2', icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            {
-                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-bookmark' },
-                                    { label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark' },
-                                ]
-                            },
-                            {
-                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark' },
-                                ]
-                            },
-                        ]
                     }
                 ]
             },

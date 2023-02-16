@@ -24,10 +24,6 @@ export class CmsComponent {
   @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
 
   constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router, private meta:Meta) {
-    meta.updateTag({
-        name: "Description",
-        content: "Angular is a platf2222222orm for building mobile and desktop web applications. Join the community of millions of developers who build compelling user interfaces with Angular."
-      })
       this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
           if (!this.menuOutsideClickListener) {
               this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
