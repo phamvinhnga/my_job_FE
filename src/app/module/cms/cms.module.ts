@@ -20,7 +20,8 @@ import { LocaltionComponent } from './components/localtion/localtion.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { AccountComponent } from './components/account/account.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
-import { EditorModule } from 'primeng/editor';
+import { FileUploadModule} from 'primeng/fileupload'; 
+import { NgxSummernoteModule } from 'ngx-summernote';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,8 @@ import { EditorModule } from 'primeng/editor';
     AccountInfoComponent
   ],
   imports: [
+    NgxSummernoteModule,
+    FileUploadModule,
     CommonModule,
     FormsModule,
     TableModule,
@@ -46,7 +49,6 @@ import { EditorModule } from 'primeng/editor';
     DialogModule,
     ConfirmDialogModule,
     AppLayoutModule,
-    EditorModule
   ],
   exports:[
   ],
