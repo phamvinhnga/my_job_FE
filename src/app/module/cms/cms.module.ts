@@ -22,6 +22,8 @@ import { AccountComponent } from './components/account/account.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { FileUploadModule} from 'primeng/fileupload'; 
 import { NgxSummernoteModule } from 'ngx-summernote';
+import { PostEditComponent } from './components/post/edit/edit.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { NgxSummernoteModule } from 'ngx-summernote';
     LocaltionComponent,
     ShopComponent,
     AccountComponent,
-    AccountInfoComponent
+    AccountInfoComponent,
+    PostEditComponent
   ],
   imports: [
     NgxSummernoteModule,
@@ -49,6 +52,7 @@ import { NgxSummernoteModule } from 'ngx-summernote';
     DialogModule,
     ConfirmDialogModule,
     AppLayoutModule,
+    InputTextModule
   ],
   exports:[
   ],

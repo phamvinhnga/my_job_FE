@@ -13,6 +13,21 @@
         [showCurrentPageReport]="true" 
         styleClass="p-datatable-gridlines"
         currentPageReportTemplate="Hiển thị bài viết từ {first} đến {last} của {totalRecords} bài viết" [rowsPerPageOptions]="[10,25,50]">
+
+        <ng-template pTemplate="caption">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input class="p-inputtext-sm" type="text" pInputText placeholder="Tìm kiếm bài viết">         
+            </span>
+            <button 
+                [routerLink]="'./0'"
+                pButton type="button" 
+                label="Thêm mới" 
+                icon="pi pi-plus" 
+                class="p-button-sm p-button-success float-end">
+            </button>
+        </ng-template>
+
         <ng-template pTemplate="header">
             <tr>
                 <th style="width:25%">Tiêu đề</th>
