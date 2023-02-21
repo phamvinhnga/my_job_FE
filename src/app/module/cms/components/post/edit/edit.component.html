@@ -1,1 +1,71 @@
-<p>edit works!</p>
+<div id="post-crud">
+    <div class="d-flex margin-b-20">
+        <h5 class="d-block flex-fill">
+            <i class="pi pi-fw pi-home"></i>
+            Thêm bài viết
+        </h5>
+        <div>
+            <button 
+                [routerLink]="'../../post'"
+                pButton type="button" 
+                label="Quay lại" 
+                icon="pi pi-arrow-left" 
+                class="p-button-sm p-button-secondary margin-l-5 float-end">
+            </button>
+            <button 
+                pButton type="button" 
+                label="Lưu bài viết" 
+                icon="pi pi-save" 
+                class="p-button-sm p-button-success float-end">
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="field w-100 margin-b-20">
+                <h6>Tiêu dề (*)</h6>
+                <input class="w-100 p-inputtext-sm ng-invalid ng-dirty" pInputText />
+                <small class="p-error block d-block">Tiêu đề không được để trống</small>
+            </div>
+            <div class="field w-100 margin-b-20">
+                <div class="d-flex margin-b-5">
+                    <h6 class="flex-fill margin-b-0 line-height-38">Nội dung</h6>
+                    <button 
+                        pButton type="button" 
+                        label="Xem nội dung" 
+                        icon="pi pi-eye" 
+                        class="p-button-sm p-button-help">
+                    </button>
+                </div>
+                <div [ngxSummernote]="summernoteOptions"></div>
+            </div>
+            <div class="field margin-b-20">
+                <h6>Ảnh đại diện</h6>
+                <div>
+                    <a class="example-image-link" [href]="listFileImage[0]?.url" 
+                        data-lightbox="example-set">
+                        <img width="250px" [src]="listFileImage[0]?.url" alt="">
+                    </a>
+                    <input #thumnailInputTmp type="file" (change)="onRemoveFileImage(); onHandleUploadImage($event)" class="d-none"/>
+                    <div class="margin-t-10">
+                        <button 
+                            (click)="thumnailInputTmp.click()"
+                            pButton type="button" 
+                            label="Tải ảnh" 
+                            icon="pi pi-upload" 
+                            class="p-button-sm p-button-primary">
+                        </button>
+                        <button 
+                            (click)="onRemoveFileImage()"
+                            pButton type="button" 
+                            label="Xóa ảnh" 
+                            icon="pi pi-times" 
+                            class="p-button-sm p-button-danger margin-l-5">
+                        </button>
+                    </div>
+                </div>
+      
+            </div>
+        </div>
+    </div>
+</div>
