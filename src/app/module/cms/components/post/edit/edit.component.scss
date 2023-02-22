@@ -7,5 +7,10 @@
             left: 30px;
             right: 30px;
         };
+
+        .p-dialog-mask{
+            width: unset !important;
+            height: unset !important;
+        }
     }
 }

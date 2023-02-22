@@ -1,8 +1,8 @@
-<div id="post-crud">
+<div *ngIf="form" id="post-crud">
     <div class="d-flex margin-b-20">
         <h5 class="d-block flex-fill">
             <i class="pi pi-fw pi-home"></i>
-            Thêm bài viết
+            {{ title }}
         </h5>
         <div>
             <button 
@@ -13,6 +13,8 @@
                 class="p-button-sm p-button-secondary margin-l-5 float-end">
             </button>
             <button 
+                (click)="save()"
+                [disabled]="form.invalid"
                 pButton type="button" 
                 label="Lưu bài viết" 
                 icon="pi pi-save" 
@@ -20,31 +22,36 @@
             </button>
         </div>
     </div>
-    <div class="row">
+    <div [hidden]="displayBasic" [formGroup]="form" class="row">
         <div class="col-12">
             <div class="field w-100 margin-b-20">
                 <h6>Tiêu dề (*)</h6>
-                <input class="w-100 p-inputtext-sm ng-invalid ng-dirty" pInputText />
-                <small class="p-error block d-block">Tiêu đề không được để trống</small>
+                <input 
+                    [ngClass]="{'ng-invalid ng-dirty': formValidation('title')}" 
+                    formControlName="title" 
+                    class="w-100 p-inputtext" 
+                    pInputText />
+                <small *ngIf="formValidation('title')" class="p-error block d-block">Tiêu đề không được để trống</small>
             </div>
             <div class="field w-100 margin-b-20">
                 <div class="d-flex margin-b-5">
                     <h6 class="flex-fill margin-b-0 line-height-38">Nội dung</h6>
                     <button 
+                        (click)="showBasicDialog()"
                         pButton type="button" 
                         label="Xem nội dung" 
                         icon="pi pi-eye" 
                         class="p-button-sm p-button-help">
                     </button>
                 </div>
-                <div [ngxSummernote]="summernoteOptions"></div>
+                <div formControlName="content" [ngxSummernote]="summernoteOptions"></div>
             </div>
             <div class="field margin-b-20">
                 <h6>Ảnh đại diện</h6>
                 <div>
                     <a class="example-image-link" [href]="listFileImage[0]?.url" 
                         data-lightbox="example-set">
-                        <img width="250px" [src]="listFileImage[0]?.url" alt="">
+                        <img width="250px" [src]="listFileImage[0]?.url" [alt]="listFileImage[0]?.name">
                     </a>
                     <input #thumnailInputTmp type="file" (change)="onRemoveFileImage(); onHandleUploadImage($event)" class="d-none"/>
                     <div class="margin-t-10">
@@ -68,4 +75,12 @@
             </div>
         </div>
     </div>
+
+    <p-dialog [(visible)]="displayBasic" [style]="{width: '100vw', height: '100vh'}">
+        <div class="container">
+            <div [ngxSummernoteView]="form?.get('content')?.value"></div>
+        </div>
+    </p-dialog>
+    
 </div>
+

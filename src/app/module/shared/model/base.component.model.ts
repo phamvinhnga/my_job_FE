@@ -5,6 +5,7 @@ import { FormGroup } from "@angular/forms";
 
 export class BaseComponent {
 
+  title:string | undefined;
   form: FormGroup | undefined;
   summernoteOptions: SummernoteOptions = {
     placeholder: '',
@@ -40,7 +41,7 @@ export class BaseComponent {
     }
   };
 
-  listFileImage:IFileModel[] = [];
+  listFileImage:FileModel[] = [];
 
   async onHandleUploadImage(event: any): Promise<FileModel[]> {
     if(!this.listFileImage){
@@ -55,7 +56,7 @@ export class BaseComponent {
             name: file.name,
             type: file.type,
             url: reader.result
-          } as IFileModel)
+          } as FileModel)
         };
       });
 

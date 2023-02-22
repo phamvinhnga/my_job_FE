@@ -1,29 +1,32 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { SummernoteOptions } from 'ngx-summernote/lib/summernote-options';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Table } from 'primeng/table';
-import { BaseComponent } from 'src/app/module/shared/model/BaseComponent.model';
+import { BaseComponent } from 'src/app/module/shared/model/base.component.model';
+import { BasePageOutputModel } from 'src/app/module/shared/model/base.model';
+import { PostOutputModel } from 'src/app/module/shared/model/post.model';
+import { PostService } from 'src/app/module/shared/service/post.service';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  styleUrls: ['./post.component.scss'],
+  providers: [PostService]
 })
 export class PostComponent extends BaseComponent implements OnInit {
 
-  content = "null";
-  customers: any[] = [];
+  data!: BasePageOutputModel<PostOutputModel>;
 
   constructor(
-    private http: HttpClient,
     private confirmationService:ConfirmationService,
-    private messageService:MessageService
+    private messageService:MessageService,
+    private postService:PostService,
     ) {
     super();
   }
 
   ngOnInit() {
+    this.postService.getList({}).subscribe(res => {
+      this.data = res;
+    })
   }
 
   deleteProduct(product: any) {

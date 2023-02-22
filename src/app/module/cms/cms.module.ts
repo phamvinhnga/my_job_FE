@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CmsRoutingModule } from './cms-routing.module';
 import { CmsComponent } from './cms.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppLayoutModule } from './layout/app.layout.module';
 import { PostComponent } from './components/post/post.component';
 import {TableModule} from 'primeng/table';
@@ -38,27 +38,25 @@ import { InputTextModule } from 'primeng/inputtext';
     ShopComponent,
     AccountComponent,
     AccountInfoComponent,
-    PostEditComponent
+    PostEditComponent,
   ],
   imports: [
     NgxSummernoteModule,
     FileUploadModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     TableModule,
     ButtonModule,
-    HttpClientModule,
     CmsRoutingModule,
     DialogModule,
     ConfirmDialogModule,
     AppLayoutModule,
     InputTextModule
   ],
-  exports:[
-  ],
   providers:[
     ConfirmationService,
-    MessageService
+    MessageService,
   ]
 })
 export class CmsModule { }
