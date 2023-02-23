@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { SummernoteOptions } from 'ngx-summernote/lib/summernote-options';
+import { MessageService } from 'primeng/api';
 import { BaseComponent } from 'src/app/module/shared/model/base.component.model';
 import { FileModel } from 'src/app/module/shared/model/file.model';
 import { PostInputModel, PostOutputModel } from 'src/app/module/shared/model/post.model';
@@ -22,7 +23,8 @@ export class PostEditComponent extends BaseComponent implements OnInit {
   constructor(
     private readonly postService:PostService,
     private readonly router:Router,
-    private readonly activatedRoute: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly messageService:MessageService
   ) {
     super();
     this.summernoteOptionsSummery = _.cloneDeep(this.summernoteOptions);
@@ -61,7 +63,8 @@ export class PostEditComponent extends BaseComponent implements OnInit {
     input.thumbnail = this.listFileImage.length > 0 ? this.listFileImage[0] : undefined;
     const $api = input.id == 0 ? this.postService.create(input) : this.postService.update(input);
     return $api.subscribe(res => {
-      this.router.navigateByUrl('cms/post')
+      this.messageService.add({severity:'success', summary: 'Thành công', detail: 'Xóa bài viết', life: 3000});
+      this.router.navigateByUrl('cms/post');
     });
   }
 

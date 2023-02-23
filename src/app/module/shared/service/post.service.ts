@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { BasePageOutputModel } from '../model/base.model';
+import { BasePageInputModel, BasePageOutputModel } from '../model/base.model';
 import { PostInputModel, PostOutputModel } from '../model/post.model';
 
 const _prefix = `${environment.base_url}/api`;
@@ -17,8 +17,8 @@ export class PostService {
   ) { }
 
 
-  getList(input:any): Observable<BasePageOutputModel<PostOutputModel>> {
-    return this.httpClient.get(`${_prefix}/post`, input).pipe(
+  getList(input:BasePageInputModel): Observable<BasePageOutputModel<PostOutputModel>> {
+    return this.httpClient.get(`${_prefix}/post`, input as any).pipe(
         map((m:any) => {
           return {
             totalItem: m.totalItem,

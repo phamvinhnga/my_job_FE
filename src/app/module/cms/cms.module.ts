@@ -5,9 +5,8 @@ import { CmsComponent } from './cms.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppLayoutModule } from './layout/app.layout.module';
 import { PostComponent } from './components/post/post.component';
-import {TableModule} from 'primeng/table';
-import {ButtonModule} from 'primeng/button';
-import { HttpClientModule } from '@angular/common/http';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -24,6 +23,9 @@ import { FileUploadModule} from 'primeng/fileupload';
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { PostEditComponent } from './components/post/edit/edit.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -52,11 +54,14 @@ import { InputTextModule } from 'primeng/inputtext';
     DialogModule,
     ConfirmDialogModule,
     AppLayoutModule,
-    InputTextModule
+    InputTextModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule
   ],
   providers:[
     ConfirmationService,
     MessageService,
-  ]
+  ],
 })
 export class CmsModule { }

@@ -25,7 +25,7 @@
     <div [hidden]="displayBasic" [formGroup]="form" class="row">
         <div class="col-12">
             <div class="field w-100 margin-b-20">
-                <h6>Tiêu dề (*)</h6>
+                <h6>Tiêu dề <span [ngStyle]="{color:'var(--red-300)'}">(*)</span></h6>
                 <input 
                     [ngClass]="{'ng-invalid ng-dirty': formValidation('title')}" 
                     formControlName="title" 

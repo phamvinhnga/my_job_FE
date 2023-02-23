@@ -34,11 +34,13 @@ export interface IPostInputModel{
 }
 
 export class PostOutputModel implements IPostOutputModel {
-  id:number | undefined;
+  id!:number;
   title:string | undefined;
   content:string | undefined;
   summary:string | undefined;
   thumbnail:FileModel | undefined;
+  createDate:string | Date | undefined;
+  createUser:number | undefined;
 
   init(data?: any) {
       if (data) {
@@ -58,9 +60,11 @@ export class PostOutputModel implements IPostOutputModel {
   }
 }
 export interface IPostOutputModel{
-  id:number | undefined;
+  id:number;
   title:string | undefined;
   content:string | undefined;
   summary:string | undefined;
   thumbnail:FileModel | undefined;
+  createDate:string | Date | undefined;
+  createUser:number | undefined;
 }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, Message } from 'primeng/api';
 import { BaseComponent } from 'src/app/module/shared/model/base.component.model';
-import { BasePageOutputModel } from 'src/app/module/shared/model/base.model';
+import { BasePageInputModel, BasePageOutputModel } from 'src/app/module/shared/model/base.model';
 import { PostOutputModel } from 'src/app/module/shared/model/post.model';
 import { PostService } from 'src/app/module/shared/service/post.service';
-
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -14,7 +13,8 @@ import { PostService } from 'src/app/module/shared/service/post.service';
 export class PostComponent extends BaseComponent implements OnInit {
 
   data!: BasePageOutputModel<PostOutputModel>;
-
+  filterPage: BasePageInputModel = new BasePageInputModel();
+  search:string = '';
   constructor(
     private confirmationService:ConfirmationService,
     private messageService:MessageService,
@@ -24,20 +24,30 @@ export class PostComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.postService.getList({}).subscribe(res => {
-      this.data = res;
-    })
+    this.filterPage.maxCountResult = 9999;
+    this.getList();
   }
 
-  deleteProduct(product: any) {
+  onDelete(data:PostOutputModel) {
+    if(!data){
+      return;
+    }
     this.confirmationService.confirm({
-        message: 'Bạn có chắc chắn xóa bài viết ' + product.name + '?',
+        message: `Bạn có chắc chắn xóa bài viết ${data.title}?`,
         header: 'Xóa bài viết',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
+          this.postService.delete(data.id).subscribe(res => {
+            this.getList();
+            this.messageService.add({severity:'success', summary: 'Thành công', detail: 'Xóa bài viết', life: 3000});
+          })
         }
-  });
-}
+    });
+  }
 
+  private getList(){
+    this.postService.getList(this.filterPage).subscribe(res => {
+      this.data = res;
+    })
+  }
 }
