@@ -23,7 +23,7 @@ export class LoginComponent {
       userName: this.username,
       password: this.password
     } as IAuthModel).subscribe(res => {
-      this.authService.saveToken(res.accessToken);
+      this.authService.saveToken(res.accessToken, res.refreshToken);
       this.router.navigateByUrl('cms/post');
     })
   }

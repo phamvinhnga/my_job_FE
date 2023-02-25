@@ -39,6 +39,7 @@ export class PostOutputModel implements IPostOutputModel {
   content:string | undefined;
   summary:string | undefined;
   thumbnail:FileModel | undefined;
+  permalink:string | undefined;
   createDate:string | Date | undefined;
   createUser:number | undefined;
 
@@ -48,6 +49,7 @@ export class PostOutputModel implements IPostOutputModel {
         this.title = data["title"];
         this.content = data["content"];
         this.summary = data["summary"];
+        this.permalink = data["permalink"];
         this.thumbnail = data["thumbnail"] ? FileModel.fromJS(data["thumbnail"]) : undefined;
       }
   }

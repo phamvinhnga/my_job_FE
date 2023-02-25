@@ -39,7 +39,7 @@ export class PostComponent extends BaseComponent implements OnInit {
         accept: () => {
           this.postService.delete(data.id).subscribe(res => {
             this.getList();
-            this.messageService.add({severity:'success', summary: 'Thành công', detail: 'Xóa bài viết', life: 3000});
+            this.messageService.add({severity:'warn', summary: 'Xóa thành công', life: 1000});
           })
         }
     });

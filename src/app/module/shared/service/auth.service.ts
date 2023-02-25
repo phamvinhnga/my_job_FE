@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
@@ -16,6 +16,8 @@ export class AuthService {
   private _currentUser:CurrentUserOutputModel | undefined;
   
   private readonly ACCESS_TOKEN_KEY = 'access_token';
+  private readonly REFRESH_TOKEN_KEY = 'refresh_token';
+
 
   constructor(
     private readonly httpClient: HttpClient,
@@ -28,6 +30,19 @@ export class AuthService {
 
   signIn(input:AuthModel): Observable<UserSignInOutputModel> {
     return this.httpClient.post(`${_prefix}/auth/sign-in`, input).pipe(
+      map(m => {
+        return UserSignInOutputModel.fromJS(m);
+      })
+    );
+  }
+
+  refreshToken(): Observable<UserSignInOutputModel> {
+    const option = {
+      headers: new HttpHeaders({
+        'refresh-token': this.getRefreshToken() || '',
+      })
+    }
+    return this.httpClient.get(`${_prefix}/auth/refresh-token`, option).pipe(
       map(m => {
         return UserSignInOutputModel.fromJS(m);
       })
@@ -48,16 +63,28 @@ export class AuthService {
     });
   }
 
-  saveToken(token: string): void {
+  logout(): void {
+    this.deleteToken();
+    this.router.navigateByUrl('admin');
+  }
+
+
+  saveToken(token: string, refresh:string): void {
     localStorage.setItem(this.ACCESS_TOKEN_KEY, token);
+    localStorage.setItem(this.REFRESH_TOKEN_KEY, refresh);
   }
 
   getToken(): string | null {
     return localStorage.getItem(this.ACCESS_TOKEN_KEY);
   }
 
+  getRefreshToken(): string | null {
+    return localStorage.getItem(this.REFRESH_TOKEN_KEY);
+  }
+
   deleteToken(): void {
     localStorage.removeItem(this.ACCESS_TOKEN_KEY);
+    localStorage.removeItem(this.REFRESH_TOKEN_KEY);
   }
 
   isAuthenticated(): boolean {

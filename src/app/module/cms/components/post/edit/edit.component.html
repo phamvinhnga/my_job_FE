@@ -28,10 +28,25 @@
                 <h6>Tiêu dề <span [ngStyle]="{color:'var(--red-300)'}">(*)</span></h6>
                 <input 
                     [ngClass]="{'ng-invalid ng-dirty': formValidation('title')}" 
+                    (input)="onChangeTitle($event)" 
                     formControlName="title" 
                     class="w-100 p-inputtext" 
                     pInputText />
                 <small *ngIf="formValidation('title')" class="p-error block d-block">Tiêu đề không được để trống</small>
+            </div>
+            <div class="field w-100 margin-b-20">
+                <h6>Liên kết bài viết <span [ngStyle]="{color:'var(--red-300)'}">(*)</span> :
+                    <a target="_blank" [href]="permalinkRoot + form.get('permalink')?.value" class="margin-l-5">
+                        <i>{{ permalinkRoot }}{{ form.get('permalink')?.value }}</i>
+                    </a>
+                </h6>  
+        
+                <input 
+                    [ngClass]="{'ng-invalid ng-dirty': formValidation('permalink')}" 
+                    formControlName="permalink"
+                    (input)="onChangePermalink($event)" 
+                    class="w-100 p-inputtext" 
+                    pInputText />
             </div>
             <div class="field w-100 margin-b-20">
                 <div class="d-flex margin-b-5">
@@ -49,10 +64,20 @@
             <div class="field margin-b-20">
                 <h6>Ảnh đại diện</h6>
                 <div>
-                    <a class="example-image-link" [href]="listFileImage[0]?.url" 
+                    <a 
+                        *ngIf="listFileImage[0]"
+                        [href]="listFileImage[0]?.url" 
+                        class="example-image-link" 
                         data-lightbox="example-set">
                         <img width="250px" [src]="listFileImage[0]?.url" [alt]="listFileImage[0]?.name">
                     </a>
+                    <a 
+                        *ngIf="!listFileImage[0]"
+                        (click)="thumnailInputTmp.click()"
+                        class="example-image-link">
+                        <img width="250px" [src]="'assets/demo/images/avatar/placeholder.png'">
+                    </a>
+
                     <input #thumnailInputTmp type="file" (change)="onRemoveFileImage(); onHandleUploadImage($event)" class="d-none"/>
                     <div class="margin-t-10">
                         <button 

@@ -10,11 +10,13 @@ export interface IAuthModel{
 
 export class UserSignInOutputModel implements IUserSignInOutputModel {
     accessToken!:string;
+    refreshToken!:string;
     expire!:string;
 
     init(data?: any) {
         if (data) {
             this.accessToken = data["accessToken"];
+            this.refreshToken = data["refreshToken"];
             this.expire = data["expire"];
         }
     }
@@ -29,6 +31,7 @@ export class UserSignInOutputModel implements IUserSignInOutputModel {
 export interface IUserSignInOutputModel{
     accessToken:string | undefined;
     expire:string | Date | undefined;
+    refreshToken:string | undefined;
 }
 
 

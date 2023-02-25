@@ -25,7 +25,9 @@ import { PostEditComponent } from './components/post/edit/edit.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import {ToastModule} from 'primeng/toast';
     PostEditComponent,
   ],
   imports: [
+    ProgressSpinnerModule,
     NgxSummernoteModule,
     FileUploadModule,
     CommonModule,

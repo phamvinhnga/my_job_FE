@@ -3,8 +3,12 @@ import {
     HttpRequest,
     HttpHandler,
     HttpInterceptor,
+    HttpEvent,
+    HttpErrorResponse,
 } from '@angular/common/http';
 import { AuthService } from '../module/shared/service/auth.service';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, filter, switchMap, take } from 'rxjs/operators';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -12,7 +16,7 @@ export class JwtInterceptor implements HttpInterceptor {
         private authService: AuthService
     ) { }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler) {
+    intercept(request: HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>> {
         const token = this.authService.getToken();
         if (token) {
             request = request.clone({
@@ -21,6 +25,27 @@ export class JwtInterceptor implements HttpInterceptor {
                 }
             });
         }
-        return next.handle(request);
+        return next.handle(request).pipe(
+            catchError((error: HttpErrorResponse) => {
+              if (error.status === 401) {
+                return this.authService.refreshToken().pipe(
+                  switchMap((res) => {
+                    this.authService.saveToken(res.accessToken, res.refreshToken);
+                    request = request.clone({
+                      setHeaders: {
+                        Authorization: `Bearer ${this.authService.getToken()}`
+                      }
+                    });
+                    return next.handle(request);
+                  }),
+                  catchError((err) => {
+                    this.authService.logout();
+                    return throwError(err);
+                  })
+                );
+              }
+              return throwError(error);
+            })
+        );
     }
 }

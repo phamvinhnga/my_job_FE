@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { SummernoteOptions } from 'ngx-summernote/lib/summernote-options';
 import { MessageService } from 'primeng/api';
+import { Constants } from 'src/app/module/shared/common/constants';
+import { ConvertViToEn } from 'src/app/module/shared/common/function';
 import { BaseComponent } from 'src/app/module/shared/model/base.component.model';
 import { FileModel } from 'src/app/module/shared/model/file.model';
 import { PostInputModel, PostOutputModel } from 'src/app/module/shared/model/post.model';
@@ -17,9 +19,8 @@ import { PostService } from 'src/app/module/shared/service/post.service';
 })
 export class PostEditComponent extends BaseComponent implements OnInit {
 
-  summernoteOptionsSummery:SummernoteOptions = {};
   displayBasic = false;
-
+  permalinkRoot:string = `${window.location.origin}${Constants.ABOUT_US_URL}`;
   constructor(
     private readonly postService:PostService,
     private readonly router:Router,
@@ -27,9 +28,7 @@ export class PostEditComponent extends BaseComponent implements OnInit {
     private readonly messageService:MessageService
   ) {
     super();
-    this.summernoteOptionsSummery = _.cloneDeep(this.summernoteOptions);
-    this.summernoteOptionsSummery.height = 100;
-    this.summernoteOptions.height = 500;
+    this.summernoteOptions.height = 300;
   }
 
   ngOnInit(): void {
@@ -63,9 +62,18 @@ export class PostEditComponent extends BaseComponent implements OnInit {
     input.thumbnail = this.listFileImage.length > 0 ? this.listFileImage[0] : undefined;
     const $api = input.id == 0 ? this.postService.create(input) : this.postService.update(input);
     return $api.subscribe(res => {
-      this.messageService.add({severity:'success', summary: 'Thành công', detail: 'Xóa bài viết', life: 3000});
+      this.messageService.add({severity:'success', summary: 'Lưu thành công', life: 1000});
       this.router.navigateByUrl('cms/post');
     });
+  }
+
+  onChangeTitle($event:any){
+    const title = this.form?.get('title')?.value;
+    this.form?.get('permalink')?.setValue(ConvertViToEn(title));
+  }
+  onChangePermalink($event:any){
+    const permalink = this.form?.get('permalink')?.value;
+    this.form?.get('permalink')?.setValue(ConvertViToEn(permalink));
   }
 
   private getById(id:number){
@@ -86,6 +94,7 @@ export class PostEditComponent extends BaseComponent implements OnInit {
       id: new FormControl(data ? data.id : 0, Validators.required),
       title: new FormControl(data ? data.title : null, Validators.required),
       content: new FormControl(data ? data.content : null),
+      permalink: new FormControl(data ? data.permalink : null, Validators.required)
     });
     if(data?.thumbnail){
       this.listFileImage.push(data.thumbnail);

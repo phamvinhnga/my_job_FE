@@ -42,6 +42,7 @@
 
         <ng-template pTemplate="header">
             <tr>
+                <th class="justify-content-center" style="min-width:100px; max-width:100px">Hình ảnh</th>
                 <th style="width:25%">Tiêu đề</th>
                 <th style="max-width:200px">Ngày tạo</th>
                 <th style="max-width:120px"></th>
@@ -49,6 +50,12 @@
         </ng-template>
         <ng-template pTemplate="body" let-item>
             <tr>
+                <td class="justify-content-center" style="min-width:100px; max-width:100px">
+                    <div>
+                        <img width="50" height="50" *ngIf="item.thumbnail" [src]="item.thumbnail.url" >
+                        <img width="50" height="50" *ngIf="!item.thumbnail" [src]="'assets/demo/images/avatar/placeholder.png'">
+                    </div>
+                </td>
                 <td>{{item.title}}</td>
                 <td style="max-width:200px">{{ item.createDate | date: 'dd-MM-yyyy'}} lúc {{ item.createDate | date: 'hh:mm'}}</td>
                 <td style="max-width:120px" class="justify-content-center">
@@ -72,7 +79,7 @@
     </p-table>
 </div>
 
-<p-confirmDialog #cd [style]="{width: '50vw'}">
+<p-confirmDialog #cd [style]="{width: '25vw'}">
     <ng-template pTemplate="header">
         <h3>Thông báo xóa bài viết</h3>
     </ng-template>

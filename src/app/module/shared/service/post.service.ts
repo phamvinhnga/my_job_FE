@@ -27,6 +27,14 @@ export class PostService {
         }));
   }
 
+  getByPermalink(permalink:string) : Observable<PostOutputModel>{
+    return this.httpClient.get(`${_prefix}/post/permalink/${permalink}`).pipe(
+      map(m => {
+        return PostOutputModel.fromJS(m);
+      })
+    );
+  }
+
   getById(id:Number) : Observable<PostOutputModel>{
     return this.httpClient.get(`${_prefix}/post/${id}`).pipe(
       map(m => {

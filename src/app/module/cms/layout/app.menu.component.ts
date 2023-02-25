@@ -40,7 +40,16 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Quản lý chuỗi cửa hàng',
                 items: [
-                    { label: 'Địa điêm', icon: 'pi pi-fw pi-home', routerLink: ['/cms/post'] },
+                    {
+                        label: 'Tỉnh',
+                        icon: 'pi pi-fw pi-globe',
+                        routerLink: ['/landing']
+                    },
+                    {
+                        label: 'Quận/huyện/thành phố',
+                        icon: 'pi pi-fw pi-globe',
+                        routerLink: ['/landing']
+                    },
                     { label: 'Cửa hàng', icon: 'pi pi-fw pi-home', routerLink: ['/cms/post'] },
                 ]
             },
