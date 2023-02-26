@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { AuthService } from '../shared/service/auth.service';
-
 
 @NgModule({
   declarations: [
@@ -15,14 +11,13 @@ import { AuthService } from '../shared/service/auth.service';
   ],
   imports: [
     CommonModule,
-    LoginRoutingModule,
     CommonModule,
     FormsModule,
     ButtonModule,
     InputTextModule
   ],
-  providers: [
-    AuthService
+  exports: [
+    LoginComponent
   ]
 })
 export class LoginModule { }

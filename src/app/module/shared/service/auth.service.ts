@@ -51,7 +51,7 @@ export class AuthService {
 
   getCurrentUser() {
     if(!this.isAuthenticated()){
-      this.router.navigateByUrl('admin');
+      this.router.navigateByUrl('dang-nhap');
       return;
     }
     (this.httpClient.get(`${_prefix}/auth/current-user`, {}).pipe(
@@ -65,7 +65,7 @@ export class AuthService {
 
   logout(): void {
     this.deleteToken();
-    this.router.navigateByUrl('admin');
+    this.router.navigateByUrl('dang-nhap');
   }
 
 

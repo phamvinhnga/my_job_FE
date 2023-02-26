@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { SummernoteOptions } from 'ngx-summernote/lib/summernote-options';
@@ -25,10 +26,15 @@ export class PostEditComponent extends BaseComponent implements OnInit {
     private readonly postService:PostService,
     private readonly router:Router,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly messageService:MessageService
+    private readonly messageService:MessageService,
+    private readonly meta:Meta
   ) {
     super();
     this.summernoteOptions.height = 300;
+    this.meta.updateTag({
+      name: "Description",
+      content: "Angular is a platform for building mobile and desktop web applications. Join the community of millions of developers who build compelling user interfaces with Angular."
+    })
   }
 
   ngOnInit(): void {

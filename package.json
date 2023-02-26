@@ -28,6 +28,7 @@
     "bootstrap": "^5.2.3",
     "express": "^4.18.2",
     "jquery": "^3.6.3",
+    "localstorage-polyfill": "^1.0.1",
     "lodash": "^4.17.21",
     "ngx-slick-carousel": "^0.6.0",
     "ngx-summernote": "^0.8.9",

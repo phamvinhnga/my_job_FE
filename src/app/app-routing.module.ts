@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './module/login/login.component';
+import { RobotComponent } from './robots.component';
 
 const routes: Routes = [
   {
@@ -16,11 +18,10 @@ const routes: Routes = [
       import('./module/web/web.module').then((m) => m.WebModule),
   },
   {
-    path: 'admin',
-    component: AppComponent,
-    loadChildren: () =>
-      import('./module/login/login.module').then((m) => m.LoginModule),
+    path: 'dang-nhap',
+    component: LoginComponent,
   },
+  { path: 'robots.txt', component: RobotComponent }
 ];
 
 @NgModule({

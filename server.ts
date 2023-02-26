@@ -7,6 +7,8 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
+import 'localstorage-polyfill';
+global['localStorage'] = localStorage;
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -17,6 +19,7 @@ export function app(): express.Express {
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
+    inlineCriticalCss: false,
   }));
 
   server.set('view engine', 'html');

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { ConfirmationService, MessageService, Message } from 'primeng/api';
 import { BaseComponent } from 'src/app/module/shared/model/base.component.model';
 import { BasePageInputModel, BasePageOutputModel } from 'src/app/module/shared/model/base.model';
@@ -19,6 +20,7 @@ export class PostComponent extends BaseComponent implements OnInit {
     private confirmationService:ConfirmationService,
     private messageService:MessageService,
     private postService:PostService,
+    private readonly meta:Meta
     ) {
     super();
   }

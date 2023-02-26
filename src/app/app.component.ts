@@ -12,9 +12,5 @@ export class AppComponent {
   constructor(
     private readonly meta:Meta
   ){
-    meta.updateTag({
-      name: "Description",
-      content: "Angular is a platform for building mobile and desktop web applications. Join the community of millions of developers who build compelling user interfaces with Angular."
-    })
   }
 }
