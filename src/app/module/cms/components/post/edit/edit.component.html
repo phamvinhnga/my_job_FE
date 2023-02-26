@@ -1,4 +1,7 @@
-<div *ngIf="form" id="post-crud">
+<div 
+    *ngIf="form" 
+    [formGroup]="form" 
+    id="post-crud">
     <div class="d-flex margin-b-20">
         <h5 class="d-block flex-fill">
             <i class="pi pi-fw pi-home"></i>
@@ -22,7 +25,7 @@
             </button>
         </div>
     </div>
-    <div [hidden]="displayBasic" [formGroup]="form" class="row">
+    <div [hidden]="displayBasic" class="row bg-white padding-t-20">
         <div class="col-12">
             <div class="field w-100 margin-b-20">
                 <h6>Tiêu dề <span [ngStyle]="{color:'var(--red-300)'}">(*)</span></h6>
@@ -97,6 +100,33 @@
                     </div>
                 </div>
       
+            </div>
+        </div>
+    </div>
+
+    <div [hidden]="displayBasic" class="row bg-white margin-t-20 padding-t-20">
+        <div class="col-12">
+            <div class="field w-100 margin-b-20">
+                <h6>Tối ưu hóa tìm kiếm</h6>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="field w-100 margin-b-20">
+                <h6>SEO Tiêu dề</h6>
+                <input 
+                    formControlName="metaTitle" 
+                    class="w-100 p-inputtext" 
+                    pInputText />
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="field w-100 margin-b-20">
+                <h6>SEO mô tả</h6>
+                <textarea 
+                    formControlName="metaDescription" 
+                    class="w-100 p-inputtext" 
+                    pInputText >
+                </textarea>
             </div>
         </div>
     </div>

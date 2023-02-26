@@ -40,6 +40,8 @@ export class PostOutputModel implements IPostOutputModel {
   summary:string | undefined;
   thumbnail:FileModel | undefined;
   permalink:string | undefined;
+  metaTitle:string | undefined;
+  metaDescription:string | undefined;
   createDate:string | Date | undefined;
   createUser:number | undefined;
 
@@ -50,6 +52,8 @@ export class PostOutputModel implements IPostOutputModel {
         this.content = data["content"];
         this.summary = data["summary"];
         this.permalink = data["permalink"];
+        this.metaTitle = data["metaTitle"];
+        this.metaDescription = data["metaDescription"];
         this.thumbnail = data["thumbnail"] ? FileModel.fromJS(data["thumbnail"]) : undefined;
       }
   }
@@ -67,6 +71,9 @@ export interface IPostOutputModel{
   content:string | undefined;
   summary:string | undefined;
   thumbnail:FileModel | undefined;
+  permalink:string | undefined;
+  metaTitle:string | undefined;
+  metaDescription:string | undefined;
   createDate:string | Date | undefined;
   createUser:number | undefined;
 }

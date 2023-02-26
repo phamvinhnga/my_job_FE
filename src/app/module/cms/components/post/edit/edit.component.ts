@@ -94,7 +94,9 @@ export class PostEditComponent extends BaseComponent implements OnInit {
       id: new FormControl(data ? data.id : 0, Validators.required),
       title: new FormControl(data ? data.title : null, Validators.required),
       content: new FormControl(data ? data.content : null),
-      permalink: new FormControl(data ? data.permalink : null, Validators.required)
+      permalink: new FormControl(data ? data.permalink : null, Validators.required),
+      metaTitle: new FormControl(data ? data.metaTitle : null),
+      metaDescription: new FormControl(data ? data.metaDescription : null)
     });
     if(data?.thumbnail){
       this.listFileImage.push(data.thumbnail);
